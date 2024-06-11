@@ -1,0 +1,4 @@
+-------------------------------------how to run this application -----------
+1. update-migration      -----by CMD
+2. dotnet run          
+3. ng serve -o

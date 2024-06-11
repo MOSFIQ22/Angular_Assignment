@@ -1,0 +1,48 @@
+
+<mat-card class="mat-elevation-z10">
+    <mat-card-header>
+      <img mat-card-avatar src="../../../../assets/school_FILL0_wght400_GRAD0_opsz48.svg"/>
+      <mat-card-title>Courses</mat-card-title>
+      <mat-card-subtitle>List of Courses</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="right">
+        <a mat-mini-fab [routerLink]="['/course-create']">
+            <mat-icon>add</mat-icon>
+        </a>
+    </div>
+      <mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="title">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Title</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.title}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="description">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.description}}</mat-cell>
+        </ng-container>          
+        <ng-container matColumnDef="dueDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Due Date</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.dueDate | date:'yyyy-MM-dd'}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.status}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>...</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+              <a [routerLink]="['/course-edit', element.id]"><mat-icon>edit</mat-icon></a>
+              <button [disabled]="!element.id" mat-icon-button (click)="confirmDelete(element)"><mat-icon>delete</mat-icon></button>       </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: columns;"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20, 40]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+    </mat-card-content>
+    <mat-card-actions>
+      <a mat-flat-button [routerLink]="['/courses']">Back to List</a>
+    </mat-card-actions>
+  </mat-card>
+  
